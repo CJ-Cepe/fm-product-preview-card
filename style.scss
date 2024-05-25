@@ -1,0 +1,76 @@
+@use "sass:math";
+@import "_style-font.scss";
+
+@function pxToRem($px){
+    @return math.div($px, 16px) * 1rem;
+}
+
+/* simple css reset */
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* general styling */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #F3EAE3;
+    min-height: 100vh;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: pxToRem(14px);
+    font-weight: 400;
+}
+
+.card {
+    max-width: pxToRem(600px);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    overflow: hidden;
+}
+
+.thumbnail {
+    img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+
+    .category {
+        text-transform: uppercase;
+    }
+
+    .title {
+        font-family: "Fraunces", serif;
+        font-size: pxToRem(36px);
+        font-weight: inherit;
+    }
+
+    .description {
+
+    }
+
+    .price {
+        font-family: "Fraunces", serif;
+
+    }
+
+    .action {
+
+    }
+}
