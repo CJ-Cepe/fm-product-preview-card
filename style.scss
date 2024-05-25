@@ -5,6 +5,24 @@
     @return math.div($px, 16px) * 1rem;
 }
 
+$xs: pxToRem(12px);
+$s: pxToRem(14px);
+$m: pxToRem(16px);
+$xl: pxToRem(32px);
+$xxl: pxToRem(36px);
+
+$white: #FFFFFF;
+$green: #3D8168;
+$green2: #306652;
+$green3: #234d3d;
+$red: rgba(147, 12, 12, 0.6);
+$gray: #717171;
+$brown: #AC8B53;
+$cream: #F3EAE3;
+
+$fontM: "Montserrat", sans-serif;
+$fontF: "Fraunces", serif;
+
 /* simple css reset */
 *, *::before, *::after{
     box-sizing: border-box;
@@ -15,62 +33,122 @@
     padding: 0;
 }
 
-/* general styling */
+/* styling */
 body {
+    font-family: $fontM;
+    font-size: $s;
+    font-weight: 400;
+
+    background-color: $cream;
+    min-height: 100vh;
+    padding: $xl;
+
     display: flex;
     justify-content: center;
     align-items: center;
-
-    background-color: #F3EAE3;
-    min-height: 100vh;
-
-    font-family: "Montserrat", sans-serif;
-    font-size: pxToRem(14px);
-    font-weight: 400;
 }
 
 .card {
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 10px 4px rgba(172,139,83,0.25);
+    border-radius: 10px;
+    overflow: hidden;
     max-width: pxToRem(600px);
+    min-width: pxToRem(200px);
 
     display: grid;
     grid-template-columns: 1fr 1fr;
-    border-radius: 10px;
-    background-color: #FFFFFF;
-    overflow: hidden;
 }
 
 .thumbnail {
     img {
         width: 100%;
-        height: auto;
+        height: 100%;
         object-fit: cover;
+        filter: brightness(90%);
     }
 }
 
 .content {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: pxToRem(32px);
 
     .category {
         text-transform: uppercase;
+        letter-spacing: pxToRem(4px);
+        font-size: $xs;
+        color: $brown;
     }
 
     .title {
-        font-family: "Fraunces", serif;
-        font-size: pxToRem(36px);
-        font-weight: inherit;
+        font-family: $fontF;
+        font-size: $xxl;
+        font-weight: 500;
+        line-height: pxToRem(35px);
     }
 
     .description {
-
+        line-height: pxToRem(22px);
+        color: $gray;
     }
 
     .price {
-        font-family: "Fraunces", serif;
+        font-family: $fontF;
+        
+        strong {
+            font-size: $xxl;
+            color: $green;
+        }
 
+        del {
+            color: $red;
+        }
     }
 
     .action {
+        background-color: $green;
+        color: $white;
+        padding: pxToRem(14px) 0;
+        border: none;
 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.7rem;
+
+        transition: background-color 0.1s ease-in-out;
+
+        &:hover, &:focus {
+            background-color: $green2;
+        }
+
+        &:active {
+            background-color: $green3;
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    body {
+        font-size: $xs;
+    }
+
+    .card {
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.5fr 1fr;
+        
+        .content {
+            gap: 0.5rem;
+            justify-content: start;
+            padding: pxToRem(16px);
+
+            .title,
+            .price > strong {
+                font-size: $xl;
+            }
+        }
     }
 }
